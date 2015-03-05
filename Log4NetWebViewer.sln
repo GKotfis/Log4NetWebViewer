@@ -8,7 +8,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log4NetWebViewer", "Log4NetWebViewer\Log4NetWebViewer.csproj", "{7A938CC0-71AB-426B-9D39-C15D95BB5728}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log4NetWebViewer.SampleApp", "Log4NetWebViewer.SampleApp\Log4NetWebViewer.SampleApp.csproj", "{A65C6D10-9493-44E4-9E51-78C5D03A7AAF}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A938CC0-71AB-426B-9D39-C15D95BB5728}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A938CC0-71AB-426B-9D39-C15D95BB5728}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A938CC0-71AB-426B-9D39-C15D95BB5728}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A938CC0-71AB-426B-9D39-C15D95BB5728}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A65C6D10-9493-44E4-9E51-78C5D03A7AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A65C6D10-9493-44E4-9E51-78C5D03A7AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A65C6D10-9493-44E4-9E51-78C5D03A7AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A65C6D10-9493-44E4-9E51-78C5D03A7AAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

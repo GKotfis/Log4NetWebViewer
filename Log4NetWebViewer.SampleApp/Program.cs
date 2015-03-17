@@ -1,5 +1,6 @@
 ﻿using log4net;
 using log4net.Config;
+using log4net.Core;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,6 +14,11 @@ namespace Log4NetWebViewer.SampleApp
         private static void Main(string[] args)
         {
             BasicConfigurator.Configure();
+
+            var attachable = ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository()).Root as IAppenderAttachable;
+            var webAppender = new Log4NetWebViewer.WebAppender();
+
+            attachable.AddAppender(webAppender);
 
             var randomLogTask = new Task(() =>
                 {

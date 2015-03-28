@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Log4Net</h1>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.4.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            var hub = $.connection.logHub;
+
+            hub.client.addMsg = function (msg) {
+                var encodedMsg = $('<div />').text(msg).html();
+                $('#logs').append('<p>' + encodedMsg + '</p>');
+
+            };
+
+            $.connection.hub.start();
+        });
+
+    </script>
+
+    <div id="logs">
+
+    </div>
+</body>
+</html>

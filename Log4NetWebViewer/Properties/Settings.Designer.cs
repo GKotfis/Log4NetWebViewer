@@ -25,7 +25,7 @@ namespace Log4NetWebViewer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8065")]
         public string Url {
             get {
                 return ((string)(this["Url"]));

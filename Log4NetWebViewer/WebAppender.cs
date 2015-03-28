@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using log4net.Appender;
-using Microsoft.AspNet.SignalR;
+﻿using log4net.Appender;
+using Log4NetWebViewer.Services;
 
 namespace Log4NetWebViewer
 {
-    public class WebAppender : Hub, IAppender
+    public class WebAppender : AppenderSkeleton
     {
-        string _name;
+        private string _name;
+
         public string Name
         {
             get
@@ -23,13 +19,14 @@ namespace Log4NetWebViewer
             }
         }
 
-        WebService webService = null;
+        private WebService webService = null;
+
+        private string renderedMsg = "";
 
         public WebAppender()
         {
             webService = new WebService(Properties.Settings.Default.Url);
             webService.Start();
-
         }
 
         public void Close()
@@ -37,16 +34,14 @@ namespace Log4NetWebViewer
             webService = null;
         }
 
-        public void DoAppend(log4net.Core.LoggingEvent loggingEvent)
+        protected override void Append(log4net.Core.LoggingEvent loggingEvent)
         {
-            Send(loggingEvent.RenderedMessage);
-        }
+            if (this.Layout == null)
+                renderedMsg = loggingEvent.RenderedMessage;
+            else
+                renderedMsg = base.RenderLoggingEvent(loggingEvent);
 
-        public void Send(string msg)
-        {
-            var context = GlobalHost.ConnectionManager.GetHubContext<WebAppender>();
-            context.Clients.All.addMsg(msg);
+            LogHub.Send(renderedMsg);
         }
-
     }
 }

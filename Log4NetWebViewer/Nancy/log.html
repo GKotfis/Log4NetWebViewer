@@ -4,6 +4,17 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <style>
+        body{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: black;
+            color: white;
+            font-size: small;
+        }
+        span{
+            display: list-item;
+        }
+    </style>
 </head>
 <body>
     <h1>Log4Net</h1>
@@ -18,8 +29,8 @@
 
             hub.client.addMsg = function (msg) {
                 var encodedMsg = $('<div />').text(msg).html();
-                $('#logs').append('<p>' + encodedMsg + '</p>');
-
+                $('#logs').append('<span>' + encodedMsg + '</span>');
+                $("html, body").animate({ scrollTop: $(document).height() }, "slow");
             };
 
             $.connection.hub.start();
@@ -28,7 +39,6 @@
     </script>
 
     <div id="logs">
-
     </div>
 </body>
 </html>

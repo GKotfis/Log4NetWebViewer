@@ -1,5 +1,7 @@
-﻿using log4net.Appender;
+﻿using log4net;
+using log4net.Appender;
 using Log4NetWebViewer.Services;
+using System;
 
 namespace Log4NetWebViewer
 {
@@ -25,8 +27,21 @@ namespace Log4NetWebViewer
 
         public WebAppender()
         {
-            webService = new WebService(Properties.Settings.Default.Url);
-            webService.Start();
+            try
+            {
+                this.Name = this.GetType().Name;
+                webService = new WebService(Properties.Settings.Default.Url);
+                webService.Start();
+
+            }
+            catch (Exception ex)
+            {
+                var loggers = LogManager.GetCurrentLoggers();
+                foreach (var logger in loggers)
+                {
+                    logger.Error("Init WebViewer failed!", ex);
+                }
+            }
         }
 
         public void Close()
@@ -45,3 +60,4 @@ namespace Log4NetWebViewer
         }
     }
 }
+

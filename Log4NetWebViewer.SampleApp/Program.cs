@@ -28,7 +28,7 @@ namespace Log4NetWebViewer.SampleApp
                         
                     while (true)
                     {
-                        Log.InfoFormat("MonitoringTotalProcessorTime: {0}kB", AppDomain.CurrentDomain.MonitoringTotalAllocatedMemorySize / 1024);
+                        Log.InfoFormat("MonitoringTotalAllocatedMemorySize: {0}kB", AppDomain.CurrentDomain.MonitoringTotalAllocatedMemorySize / 1024);
                         Thread.Sleep(1000);
                     }
                 });

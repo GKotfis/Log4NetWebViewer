@@ -5,5 +5,8 @@
     <Setting Name="Url" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://localhost:8065</Value>
     </Setting>
+    <Setting Name="ViewName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">log</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

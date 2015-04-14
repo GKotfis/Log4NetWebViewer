@@ -1,6 +1,9 @@
 ﻿using Microsoft.Owin.Hosting;
 using Nancy;
+using Nancy.Bootstrapper;
+using Nancy.ViewEngines;
 using System;
+using System.Reflection;
 
 namespace Log4NetWebViewer.Services
 {
@@ -31,10 +34,38 @@ namespace Log4NetWebViewer.Services
         protected override void ConfigureConventions(global::Nancy.Conventions.NancyConventions nancyConventions)
         {
             base.ConfigureConventions(nancyConventions);
+            
+            //nancyConventions.ViewLocationConventions.Add((viewName, model, context) =>
+            //    {
+            //        return string.Format("Nancy/{0}", viewName);
+            //    });
+
             nancyConventions.ViewLocationConventions.Add((viewName, model, context) =>
-                {
-                    return string.Format("Nancy/{0}", viewName);
-                });
+            {
+                return string.Format("{0}", viewName);
+            });
+                
+        }
+
+        protected override void ConfigureApplicationContainer(global::Nancy.TinyIoc.TinyIoCContainer container)
+        {
+            base.ConfigureApplicationContainer(container);
+
+            var assembly = GetType().Assembly;
+            ResourceViewLocationProvider.RootNamespaces.Add(assembly, "Log4NetWebViewer.Nancy.Views");
+        }
+
+        protected override NancyInternalConfiguration InternalConfiguration
+        {
+            get
+            {
+                return NancyInternalConfiguration.WithOverrides(OnConfigurationBuilder);
+            }
+        }
+
+        void OnConfigurationBuilder(NancyInternalConfiguration x)
+        {
+            x.ViewLocationProvider = typeof(ResourceViewLocationProvider);
         }
     }
 }

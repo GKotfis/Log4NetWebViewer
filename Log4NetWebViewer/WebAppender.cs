@@ -27,6 +27,16 @@ namespace Log4NetWebViewer
 
         public WebAppender()
         {
+            Init();
+        }
+
+        public void Close()
+        {
+            webService = null;
+        }
+
+        private void Init()
+        {
             try
             {
                 this.Name = this.GetType().Name;
@@ -37,16 +47,12 @@ namespace Log4NetWebViewer
             catch (Exception ex)
             {
                 var loggers = LogManager.GetCurrentLoggers();
+
                 foreach (var logger in loggers)
                 {
-                    logger.Error("Init WebViewer failed!", ex);
+                    logger.Error("Init WebAppender failed!", ex);
                 }
             }
-        }
-
-        public void Close()
-        {
-            webService = null;
         }
 
         protected override void Append(log4net.Core.LoggingEvent loggingEvent)

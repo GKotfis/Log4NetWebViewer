@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-    <h1>Log4Net</h1>
+    <h1 id="logName">Log4Net</h1>
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.4.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.min.js"></script>
     <script src="/signalr/hubs"></script>
@@ -27,7 +27,8 @@
 
             var hub = $.connection.logHub;
 
-            hub.client.addMsg = function (msg) {
+            hub.client.addMsg = function (name, msg) {
+                $('#logName').html(name);
                 var encodedMsg = $('<div />').text(msg).html();
                 $('#logs').append('<span>' + encodedMsg + '</span>');
                 $("html, body").animate({ scrollTop: $(document).height() }, "slow");

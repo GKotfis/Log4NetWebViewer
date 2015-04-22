@@ -16,16 +16,19 @@ namespace Log4NetWebViewer.SampleApp
             BasicConfigurator.Configure();
 
             var attachable = ((log4net.Repository.Hierarchy.Hierarchy)LogManager.GetRepository()).Root as IAppenderAttachable;
-            
-            var webAppender = new Log4NetWebViewer.WebAppender();
-            webAppender.Layout = new log4net.Layout.PatternLayout("%-4timestamp [%thread] %-5level %logger %ndc - %message%newline");
+
+            var webAppender = new Log4NetWebViewer.WebAppender()
+            {
+                Layout = new log4net.Layout.PatternLayout("%-4timestamp [%thread] %-5level %logger %ndc - %message%newline"),
+                Name = "SampleApp"
+            };
 
             attachable.AddAppender(webAppender);
 
             var randomLogTask = new Task(() =>
                 {
                     AppDomain.MonitoringIsEnabled = true;
-                        
+
                     while (true)
                     {
                         Log.InfoFormat("MonitoringTotalAllocatedMemorySize: {0}kB", AppDomain.CurrentDomain.MonitoringTotalAllocatedMemorySize / 1024);

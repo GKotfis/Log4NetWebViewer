@@ -7,20 +7,9 @@ namespace Log4NetWebViewer
 {
     public class WebAppender : AppenderSkeleton
     {
-        private string _name;
 
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
-
+        public string Name { get; set; }
+      
         private WebService webService = null;
 
         private string renderedMsg = "";
@@ -62,7 +51,7 @@ namespace Log4NetWebViewer
             else
                 renderedMsg = base.RenderLoggingEvent(loggingEvent);
 
-            LogHub.Send(renderedMsg);
+            LogHub.Send(Name, renderedMsg);
         }
     }
 }

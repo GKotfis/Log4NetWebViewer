@@ -69,6 +69,11 @@ namespace Log4NetWebViewer
                     webService.Dispose();
                     webService = null;
                 }
+                if (logHub != null)
+                {
+                    logHub.Dispose();
+                    logHub = null;
+                }
             }
         }
     }

@@ -20,7 +20,7 @@ namespace Log4NetWebViewer.SampleApp
             var webAppender = new Log4NetWebViewer.WebAppender()
             {
                 Layout = new log4net.Layout.PatternLayout("%-4timestamp [%thread] %-5level %logger %ndc - %message%newline"),
-                Name = "SampleApp"
+                Name = "SampleApp",
             };
 
             attachable.AddAppender(webAppender);

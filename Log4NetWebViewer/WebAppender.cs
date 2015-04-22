@@ -5,11 +5,9 @@ using System;
 
 namespace Log4NetWebViewer
 {
-    public class WebAppender : AppenderSkeleton
+    public class WebAppender : AppenderSkeleton, IDisposable
     {
 
-        public string Name { get; set; }
-      
         private WebService webService = null;
 
         private string renderedMsg = "";
@@ -52,6 +50,23 @@ namespace Log4NetWebViewer
                 renderedMsg = base.RenderLoggingEvent(loggingEvent);
 
             LogHub.Send(Name, renderedMsg);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (webService != null)
+                {
+                    webService.Dispose();
+                    webService = null;
+                }
+            }
         }
     }
 }

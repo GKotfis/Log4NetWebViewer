@@ -9,7 +9,7 @@ namespace Log4NetWebViewer
     {
 
         private WebService webService = null;
-
+        private LogHub logHub = null;
         private string renderedMsg = "";
 
         public WebAppender()
@@ -27,6 +27,9 @@ namespace Log4NetWebViewer
             try
             {
                 this.Name = this.GetType().Name;
+
+                logHub = new LogHub();
+
                 webService = new WebService(Properties.Settings.Default.Url);
                 webService.Start();
 
@@ -49,7 +52,7 @@ namespace Log4NetWebViewer
             else
                 renderedMsg = base.RenderLoggingEvent(loggingEvent);
 
-            LogHub.Send(Name, renderedMsg);
+            logHub.Send(Name, renderedMsg);
         }
 
         public void Dispose()

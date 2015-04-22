@@ -4,9 +4,14 @@ namespace Log4NetWebViewer
 {
     public class LogHub : Hub
     {
-        public static void Send(string LogName, string Message)
+        IHubContext context;
+
+        public LogHub()
         {
-            var context = GlobalHost.ConnectionManager.GetHubContext<LogHub>();
+            context = GlobalHost.ConnectionManager.GetHubContext<LogHub>();
+        }
+        public void Send(string LogName, string Message)
+        {
             context.Clients.All.addMsg(LogName, Message);
         }
     }

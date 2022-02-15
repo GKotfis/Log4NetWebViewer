@@ -6,10 +6,7 @@ namespace Log4NetWebViewer.Nancy
     {
         public LogModule()
         {
-            Get["/"] = prm =>
-            {
-                return View[Properties.Settings.Default.ViewName ?? "log.html"];
-            };
+            Get("/", prm => View[Properties.Settings.Default.ViewName ?? "log.html"]);
         }
     }
 }

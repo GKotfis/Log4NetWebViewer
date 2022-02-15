@@ -1,9 +1,9 @@
 ﻿using Microsoft.Owin.Hosting;
 using Nancy;
 using Nancy.Bootstrapper;
+using Nancy.Configuration;
 using Nancy.ViewEngines;
 using System;
-using System.Reflection;
 
 namespace Log4NetWebViewer.Services
 {
@@ -55,7 +55,7 @@ namespace Log4NetWebViewer.Services
             ResourceViewLocationProvider.RootNamespaces.Add(assembly, "Log4NetWebViewer.Nancy.Views");
         }
 
-        protected override NancyInternalConfiguration InternalConfiguration
+        protected override Func<ITypeCatalog, NancyInternalConfiguration> InternalConfiguration
         {
             get
             {

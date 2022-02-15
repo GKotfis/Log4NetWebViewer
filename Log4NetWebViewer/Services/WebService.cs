@@ -31,8 +31,6 @@ namespace Log4NetWebViewer.Services
 
     public class CustomConventionsBootstrapper : DefaultNancyBootstrapper
     {
-
-
         protected override void ConfigureConventions(global::Nancy.Conventions.NancyConventions nancyConventions)
         {
             base.ConfigureConventions(nancyConventions);
